@@ -53,14 +53,6 @@ bool KeyPairGenerator::generateKeyPair(char* publicKeyFilePath, char* privateKey
     return false;
   }
 
-  Serial.print( " ok\n  . Exporting keys...." );
-  if( ( ret = mbedtls_rsa_export    ( mbedtls_pk_rsa( pk ), &N, &P, &Q, &D, &E ) ) != 0/* || ( ret = mbedtls_rsa_export_crt( &rsa, &DP, &DQ, &QP ) )      != 0 */){
-    Serial.print( " failed\n  ! could not export RSA parameters\n\n" );
-    ret = 1;
-    cleanup();
-    return false;
-  }
-
   Serial.print( " ok\n  . Writing public key to string(PEM format)...." );
 
   unsigned char pubKeyPem[1000];
